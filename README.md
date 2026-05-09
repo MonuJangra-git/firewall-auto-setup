@@ -1,4 +1,4 @@
-# Firewall Auto Setup & Log Monitoring System
+# Firewall Access Control Automation
 
 A comprehensive Python-based firewall management system for Linux servers using `firewalld`. This project automates firewall rule configuration, service management, and provides logging functionality for all firewall operations.
 
