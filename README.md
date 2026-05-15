@@ -1,6 +1,14 @@
-# Firewall Auto Setup & Log Monitoring System
+# Firewall Auto Setup & Log Monitoring System v2.0
 
 A comprehensive Python-based firewall management system for Linux servers using `firewalld`. This project automates firewall rule configuration, service management, and provides logging functionality for all firewall operations.
+
+## Version 2.0 Updates
+
+- Enhanced error handling and logging
+- Improved user interface with better menu navigation
+- Added support for blocking specific ports for all incoming traffic
+- Better validation for IP addresses and port numbers
+- Integrated log monitoring capabilities
 
 ## Features
 
@@ -46,7 +54,7 @@ sudo apt install firewalld  # For Debian/Ubuntu
 
 Run the script with sudo privileges:
 ```bash
-sudo python3 firewall_auto_setup_integrate_with_log_monitoring_project.py
+sudo python3 firewall_2.0.py
 ```
 
 ### Menu Options
@@ -72,7 +80,7 @@ All operations are logged to `firewall_rules.log` in the same directory. Check t
 
 ```
 firewall-auto-setup/
-├── firewall_auto_setup_integrate_with_log_monitoring_project.py
+├── firewall_2.0.py
 ├── firewall_rules.log (generated after first run)
 └── README.md
 ```

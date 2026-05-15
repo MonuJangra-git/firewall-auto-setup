@@ -1,5 +1,6 @@
 import subprocess
-print("welcome to firewall management system \n you can set rules and manage your firewall using this interface ")
+import regex
+print("welcome to firewall management system v2.0 \n you can set rules and manage your firewall using this interface ")
 def log_file(write_data:str):
     with open("firewall_rules.log","a") as file:
         file.write(write_data)
@@ -64,6 +65,15 @@ def firewall_deploy():
         
 def rules_setter(): 
     choice,ip_address,port_number=rule_menu()
+    if ip_address:
+        pattern=r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        if not regex.match(pattern,ip_address):
+            log_file("invalid ip address \n please enter a valid ip address\n")
+            return
+    if port_number:
+        if not port_number.isdigit() or not (0 < int(port_number) < 65536):
+            log_file("invalid port number \n please enter a valid port number between 1 and 65535\n")
+            return
     protocol="tcp"
     # 1st rule is to allow incoming traffic on port 80 and 443 for web servers
     if choice==1:
@@ -204,6 +214,9 @@ def cli_interface():
 def rule_menu():
     print("choose the rule you want to set \n1. allow incoming traffic on port 80 and 443 for web servers \n2. allow incoming traffic on port 22 for ssh access \n3. allow incoming traffic on port 3306 for mysql database \n4. allow incoming traffic on port 5432 for postgresql database \n5. allow traffic from specific ip address to access the server \n6. block traffic from specific ip address to access the server \n7. allow traffic from specific ip address to access the server on specific port \n8. block traffic from specific ip address to access the server on specific port \n9. allow traffic from specific ip address to access the server on specific port for specific protocol \n10. block traffic from specific ip address to access the server on specific port for specific protocol\n11. block the specific port for all incoming traffic")
     choice2=input("enter your choice : ")
+    if choice2 not in ["1","2","3","4","5","6","7","8","9","10","11"]:
+        log_file("invalid choice \n please enter a valid choice\n")
+        return None,None,None
     ip_address = None
     port_number = None
     if choice2 in ["5","6"]:
@@ -214,7 +227,6 @@ def rule_menu():
         port_number=input("enter the port number : ")
         log_file(f"ip address entered by user is {ip_address} and port number is {port_number}\n")
     return int(choice2), ip_address, port_number
-
 def service_menu():
     print("choose the action you want to perform \n1. start firewall service \n2. stop firewall service \n3. restart firewall service \n4. check status of firewall service")
     choice3=input("enter your choice : ")
@@ -232,4 +244,4 @@ if __name__ == "__main__":
             log_file("exiting the firewall management system \n thank you for using the system")
             break
         else:
-            print("Invalid choice, please try again.")
+            print("Invalid choice, please try again.") 
