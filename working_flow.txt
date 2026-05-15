@@ -1,4 +1,0 @@
-1st task 
-import subprocess 
-2nd 
-sudo s

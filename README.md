@@ -24,7 +24,7 @@ A comprehensive Python-based firewall management system for Linux servers using 
    - Allow/Block traffic on specific ports
    - IP-based and port-based filtering with protocol support
 
-✅ **Logging System** - All operations logged to `firewall_rules.log`
+✅ **Logging System** - All operations logged to `firewall_rules.log` (created automatically)
 ✅ **Interactive CLI** - User-friendly menu-driven interface
 ✅ **Error Handling** - Comprehensive exception handling with timeout protection (20s)
 
@@ -81,7 +81,6 @@ All operations are logged to `firewall_rules.log` in the same directory. Check t
 ```
 firewall-auto-setup/
 ├── firewall_2.0.py
-├── firewall_rules.log (generated after first run)
 └── README.md
 ```
 
